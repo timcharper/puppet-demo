@@ -8,18 +8,10 @@ class general {
     key_url => "http://apt.brightbox.net/release.asc"
   }
 
-  package { "ruby-dev":
-    ensure => present
+  package {
+    ["ruby-dev", "build-essential"]: ensure => present;
+    "fastthread": ensure => present, provider => "gem", require => [Package["ruby-dev"], Package["build-essential"]];
   }
 
-  package { "build-essential":
-    ensure => present
-  }
-
-  package { "fastthread":
-    ensure => present,
-    provider => "gem",
-    require => [Package["ruby-dev"], Package["build-essential"]]
-  }
 }
 

@@ -1,11 +1,7 @@
 class passenger {
-  package { "apache2":
-    ensure => present
-  }
-
-  package { "libapache2-mod-passenger":
-    ensure => present,
-    require => Apt_repo["brightbox"]
+  package {
+    "apache2": ensure => present;
+    "libapache2-mod-passenger": ensure => present, require => Apt_repo["brightbox"];
   }
 
   service { "apache2":
