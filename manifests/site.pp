@@ -9,3 +9,7 @@ file { "/etc/hosts":
   source => "puppet:///configuration/hosts"
 }
 
+package { "apache2":
+  ensure => present
+}
+
