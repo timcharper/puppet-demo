@@ -29,3 +29,9 @@ apt_repo { "brightbox":
   entry => "deb http://apt.brightbox.net hardy main",
   key_url => "http://apt.brightbox.net/release.asc"
 }
+
+package { "libapache2-mod-passenger":
+  ensure => present,
+  require => Apt_repo["brightbox"]
+}
+
