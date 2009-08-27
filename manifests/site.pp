@@ -5,5 +5,7 @@ Exec {
   path => "/bin:/usr/bin"
 }
 
-include general
-include passenger
+node "puppet" {
+  include general
+  include passenger
+}
