@@ -48,3 +48,9 @@ package { "fastthread":
   provider => "gem",
   require => [Package["ruby-dev"], Package["build-essential"]]
 }
+
+service { "apache2":
+  ensure => running
+}
+
+
