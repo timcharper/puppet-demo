@@ -5,3 +5,7 @@ exec { "Create the file /tmp/hello_puppet":
   unless  => "grep Hello /tmp/hello_puppet"
 }
 
+file { "/etc/hosts":
+  source => "puppet:///configuration/hosts"
+}
+
