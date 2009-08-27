@@ -35,7 +35,16 @@ package { "libapache2-mod-passenger":
   require => Apt_repo["brightbox"]
 }
 
+package { "ruby-dev":
+  ensure => present
+}
+
+package { "build-essential":
+  ensure => present
+}
+
 package { "fastthread":
   ensure => present,
-  provider => "gem"
+  provider => "gem",
+  require => [Package["ruby-dev"], Package["build-essential"]]
 }
