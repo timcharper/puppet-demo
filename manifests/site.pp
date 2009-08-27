@@ -9,3 +9,7 @@ node "puppet" {
   include general
   include passenger
 }
+node "dbserver" {
+  include general
+  # include mysql
+}
