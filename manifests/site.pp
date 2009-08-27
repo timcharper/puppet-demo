@@ -25,3 +25,7 @@ package { "apache2":
   ensure => present
 }
 
+apt_repo { "brightbox":
+  entry => "deb http://apt.brightbox.net hardy main",
+  key_url => "http://apt.brightbox.net/release.asc"
+}
