@@ -1,3 +1,7 @@
+Exec {
+  path => "/bin:/usr/bin"
+}
+
 define apt_repo($entry, $key_url) {
   file { "/etc/apt/sources.list.d/$title.list":
     content => "$entry"
@@ -5,7 +9,6 @@ define apt_repo($entry, $key_url) {
 
   exec { "Install key for $title":
     command => "wget -q -O - $key_url | apt-key add -",
-    path => "/bin:/usr/bin",
     unless => "apt-key list | egrep -i '^uid *$title'"
   }
 }
@@ -13,7 +16,6 @@ define apt_repo($entry, $key_url) {
 exec { "Create the file /tmp/hello_puppet":
   cwd     => "/tmp",
   command => $operatingsystem ? { Ubuntu => "echo 'Hello Ubuntu' > hello_puppet", default => "echo 'Hello, linux' > hello_puppet" },
-  path    => "/bin",
   unless  => "grep Hello /tmp/hello_puppet"
 }
 
