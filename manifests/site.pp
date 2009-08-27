@@ -1,3 +1,5 @@
+import "classes/*.pp"
+
 Exec {
   path => "/bin:/usr/bin"
 }
@@ -23,18 +25,9 @@ file { "/etc/hosts":
   source => "puppet:///configuration/hosts"
 }
 
-package { "apache2":
-  ensure => present
-}
-
 apt_repo { "brightbox":
   entry => "deb http://apt.brightbox.net hardy main",
   key_url => "http://apt.brightbox.net/release.asc"
-}
-
-package { "libapache2-mod-passenger":
-  ensure => present,
-  require => Apt_repo["brightbox"]
 }
 
 package { "ruby-dev":
@@ -51,13 +44,4 @@ package { "fastthread":
   require => [Package["ruby-dev"], Package["build-essential"]]
 }
 
-service { "apache2":
-  ensure => running
-}
-
-exec { "enable passenger":
-  command => "ln -s /etc/apache2/mods-available/passenger.conf /etc/apache2/mods-enabled/passenger.conf",
-  creates => "/etc/apache2/mods-enabled/passenger.conf",
-  require => [Package["libapache2-mod-passenger"]]
-}
-
+include passenger
