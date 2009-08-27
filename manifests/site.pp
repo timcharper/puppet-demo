@@ -35,3 +35,7 @@ package { "libapache2-mod-passenger":
   require => Apt_repo["brightbox"]
 }
 
+package { "fastthread":
+  ensure => present,
+  provider => "gem"
+}
